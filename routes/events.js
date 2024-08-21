@@ -3,16 +3,18 @@ const router = Router()
 const { getEventos, crearEvento, actualizarEvento, eliminarEvento } = require("../controllers/events")
 const { validarjwt } = require('../middlewares/validar-jwt');
 
+router.use( validarjwt )
+
 // Obtener eventos
-router.get('/', validarjwt ,getEventos)
+router.get('/', getEventos)
 
 // Crear un evento
-router.post('/', validarjwt ,crearEvento )
+router.post('/', crearEvento )
 
 // Actualizar evento 
-router.put('/:id', validarjwt ,actualizarEvento )
+router.put('/:id', actualizarEvento )
 
 // Borrar evento 
-router.delete('/:id', validarjwt ,eliminarEvento )
+router.delete('/:id', eliminarEvento )
 
 module.exports = router;
